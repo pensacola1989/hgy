@@ -22,7 +22,9 @@
         <div class="navbar-header">
           <img id="logo" src="/images/logotop.png">
           <a class="myhover navbar-brand" href="#">哈公益</a>
+          @if(Auth::check())
           <a href="javascript:void(null);" id="toggleBar" style="float: left;" class="glyphicon glyphicon-align-justify"></a>
+          @endif
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -41,8 +43,13 @@
         </div>
 
         </div><!--/.nav-collapse -->
-        {{--@if(Auth::check())--}}
+        @if(Auth::check())
         <ul class="nav navbar-nav navbar-right" style="float:right;">
+              <li>
+                <a href="{{ url('user/logout') }}" class="dropdown-toggle" >
+                  <span class="glyphicon glyphicon-off" style="margin-right:5px;color:#ea6153;"></span>
+                </a>                
+              </li>
               <li class="dropdown">
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -56,16 +63,17 @@
                   <li><a href="#">Something else here</a></li>
                   <li class="divider"></li>
                   <!-- <li><a href="#" id="logout">注销</a></li> -->
-                  <li>{{ HTML::link('/logout','注销',array('id'=>'logout')) }}</li>
+                  <li>{{ HTML::link('user/logout','注销',array('id'=>'logout')) }}</li>
                 </ul>
               </li>
               <li>
 
               </li>
           </ul>
-        {{--@endif--}}
+        @endif
       </div>
     </div>
+    @if(Auth::check())
     <div class="tree_bar">
        <ul class="tree_container">
         <li class="tree_item open">
@@ -86,6 +94,7 @@
 
       </ul>
     </div>
+    @endif
     <div class="frame_container">
         <div class="content_container">
             {{ $content }}
@@ -93,9 +102,10 @@
     </div>
 </div>
 
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+{{ HTML::script('http://libs.baidu.com/jquery/2.0.0/jquery.js') }}
+{{ HTML::script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js') }}
+{{ HTML::script('http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js') }}
 {{ HTML::script('scripts/tree.js') }}
 {{ HTML::script('scripts/layout.js') }}
 </body>

@@ -33,6 +33,7 @@ class UserController extends BaseController {
      */
     public function register()
     {
+        if(Auth::check()) return $this->redirectAction('UserController@index');
         $this->title = '组织用户注册';
         $this->view('user.register');
     }
@@ -45,18 +46,13 @@ class UserController extends BaseController {
     {
         $input = Input::all();
         $newUser = $this->userRepo->storeData($input);
-        if(!$newUser) {
-            return $this->userRepo->getError();
-        }
-        else {
-            Auth::login($newUser,false);
-            return $this->redirectAction('UserController@index');
-        }
+        if($newUser) Auth::login($newUser,false);
+        return $this->redirectBack(['errors'=>$this->userRepo->getError()]);
     }
 
     public function logout()
     {
         Auth::logout();
-        return "Please login";
+        return $this->redirectAction('UserContro;ller@login');
     }
 }

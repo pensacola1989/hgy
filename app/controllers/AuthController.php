@@ -8,10 +8,29 @@
 
 class AuthController extends BaseController {
 
+	protected $layout = 'layouts.home';
 
     public function getLogin()
     {
-        return 'login action';
+    	$this->title = '用户登录';
+        $this->view('user.login');
     }
 
+    public function login()
+    {
+        $userCredential = array(
+            'email'  => Input::get('email'),
+            'password'  => Input::get('password')
+        );
+
+        if(Auth::attempt($userCredential)) {
+            return $this->redirectIntended('user/index');
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return $this->redirectAction('AuthController@getLogin');
+    }
 }

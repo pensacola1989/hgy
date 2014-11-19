@@ -429,3 +429,12 @@ label{
 .content_container{
     margin-top:60px;
 }
+
+/*------------------------------------------------Hagongyi-----------------------------------------------------------*/
+.hgy-form{
+    margin: auto;
+    width: 50%;
+}
+.navbar-nav>li>.dropdown-menu{
+    margin-top:10px;
+}

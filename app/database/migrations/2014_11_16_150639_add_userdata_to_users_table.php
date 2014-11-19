@@ -16,7 +16,7 @@ class AddUserdataToUsersTable extends Migration {
 		{
             $table->string('password');
             $table->string('remember_token');
-
+            $table->string('orgName');
         });
 	}
 

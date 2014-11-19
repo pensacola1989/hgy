@@ -23,12 +23,14 @@ Route::post('/user/login', 'AuthController@login');
 Route::get('/user/register', 'UserController@register');
 Route::post('/user/register', 'UserController@add');
 
+
+
 Route::group(['before'  =>  'auth'], function () {
     /*
      * Accounts
      */
 
-    Route::get('/user/logout','UserController@Logout');
+    Route::get('/user/logout','AuthController@Logout');
 
     // dashboard
     Route::get('/user/index', 'UserController@index');
