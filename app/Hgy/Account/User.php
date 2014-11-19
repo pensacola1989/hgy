@@ -69,6 +69,11 @@ class User extends Entity implements UserInterface, RemindableInterface {
         //or don't return nothing, since only a boolean false will halt the operation
     }
 
+    public function afterSave()
+    {
+        
+    }
+
     private function isUserExist($email,$orgName)
     {
         return self::Where(function($query) use ($email,$orgName)
